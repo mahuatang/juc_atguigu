@@ -6,7 +6,7 @@ package demo.day01;
 public class TestCompareAndSwap {
 
 	public static void main(String[] args) {
-		final com.atguigu.juc.CompareAndSwap cas = new com.atguigu.juc.CompareAndSwap();
+		final CompareAndSwap cas = new CompareAndSwap();
 		
 		for (int i = 0; i < 10; i++) {
 			new Thread(new Runnable() {

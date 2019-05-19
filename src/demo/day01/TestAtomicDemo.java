@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TestAtomicDemo {
 
 	public static void main(String[] args) {
-		com.atguigu.juc.AtomicDemo ad = new com.atguigu.juc.AtomicDemo();
+		AtomicDemo ad = new AtomicDemo();
 		
 		for (int i = 0; i < 10; i++) {
 			new Thread(ad).start();
