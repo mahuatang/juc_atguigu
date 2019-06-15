@@ -15,7 +15,7 @@ public class SingletonDemo {
                     instance = new SingletonDemo();
                 }
             }
-            instance = new SingletonDemo();
+           // instance = new SingletonDemo();
         }
         return instance;
     }

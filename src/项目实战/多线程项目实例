@@ -1,0 +1,338 @@
+package cn.chineseall.bcus.service.cardaccount.impl;
+
+import cn.chineseall.bcus.entity.cardaccount.CardAccount;
+import cn.chineseall.bcus.mapper.account.AppAccountMapper;
+import cn.chineseall.bcus.mapper.cardaccount.CardAccountMapper;
+import cn.chineseall.bcus.service.cardaccount.CardAccountService;
+import cn.chineseall.book3.mapper.user.UserMergeMapper;
+import org.nqcx.commons.dao.DaoInterface;
+import org.nqcx.commons.lang.o.DTO;
+import org.nqcx.commons.service.ServiceSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReferenceArray;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+@Service("cardAccountService")
+public class CardAccountServiceImpl extends ServiceSupport implements CardAccountService {
+    private final static Logger logger = LoggerFactory.getLogger(CardAccountServiceImpl.class);
+    @Autowired
+    private CardAccountMapper cardAccountMapper;
+
+    @Autowired
+    private UserMergeMapper userMergeMapper;
+
+    @Autowired
+    private AppAccountMapper appAccountMapper;
+
+    @Qualifier("bcusTransactionManager")
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+
+    private static final int Thread_NUMBERS = 99;
+
+
+    @Transactional
+    @Override
+    public boolean insertCardBatch(final Integer batchId, final long appId, final Integer quantity, final short lengthNumber, final Date activateTime, final Date useEndTime, final Integer timeLength, short setWay) {
+        long count = this.queryCount(new DTO().putParam("appId", appId).putParam("cardIncrementNumber", lengthNumber));
+        long maxStartNumber = 0;
+        //计算生成阅读卡的自增起始位置
+        if (count > 0) {
+            String numberStr = "";
+            int length = lengthNumber;
+            while(length-- != 0) {
+                numberStr += 9;
+            }
+            int maxEndNumber = Integer.valueOf(numberStr);
+            if (maxEndNumber <= count + quantity) {
+                logger.error("当前定制的阅读卡种类将超出上限-------->>>>appId:[{}], lengthNumber:[{}]", appId, lengthNumber);
+                return false;
+            }
+            maxStartNumber = count + 1;
+        } else {
+            maxStartNumber = 1;
+        }
+
+        final int averageQuantity  = quantity / Thread_NUMBERS;
+        final long beginNumber = maxStartNumber;
+
+        List<String> cardList = new LinkedList<String>();
+        for (int i = 0; i < quantity; i++) {
+            String cardId = appId + String.format("%0" + lengthNumber + "d", maxStartNumber) + lengthNumber;
+            cardList.add(cardId);
+            maxStartNumber++;
+        }
+
+       // List<String> appAccountresult = appAccountMapper.queryCardListSize(appId, cardList);
+
+        /*long t1 = System.currentTimeMillis();
+        List<String> userMergeResult = userMergeMapper.queryUserListSize(cardList);
+        System.out.println(userMergeResult);
+        long t2 = System.currentTimeMillis();
+        System.out.println("时间：" + (t2 - t1));*/
+
+
+        final ExecutorService threadPool = new ThreadPoolExecutor(0,
+                Thread_NUMBERS,
+                0L,
+                TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(Integer.MAX_VALUE),
+                Executors.defaultThreadFactory(),
+                new ThreadPoolExecutor.AbortPolicy());
+      //  final ExecutorService threadPool = Executors.newSingleThreadExecutor();
+        final CountDownLatch countDownLatch = new CountDownLatch(Thread_NUMBERS);
+       // final AtomicReferenceArray<TransactionStatus> transactionStatuses = new AtomicReferenceArray<TransactionStatus>(Thread_NUMBERS);
+         final List<TransactionStatus> transactionStatuses = new CopyOnWriteArrayList<TransactionStatus>();//Collections.synchronizedList(new ArrayList<TransactionStatus>());////////
+       // final Stack transactionManagerStack = new Stack();
+       // final Stack transactionStatuses = new Stack();
+        final List<Integer> flagList = new ArrayList<Integer>();
+        long ll1 = System.currentTimeMillis();
+
+      //  final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
+        final Lock reentrantReadWriteLock = new ReentrantLock();
+
+
+        try {
+            for (int i = 1; i <= Thread_NUMBERS; i++) {
+                final int currentLocation = i;
+                threadPool.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            System.out.println("开始");
+                             // 事物隔离级别，开启新事务，这样会比较安全些。
+                            //Lock writeLock = reentrantReadWriteLock.writeLock();
+                            reentrantReadWriteLock.lock();
+                            DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+                            def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+                           // PlatformTransactionManager transactionManager = manager;
+                            TransactionStatus status = transactionManager.getTransaction(def); // 获得事务状态
+                            transactionStatuses.add(status);
+                           // transactionManagerStack.push(transactionManager);
+                           // transactionStatuses.push(status);
+                            reentrantReadWriteLock.unlock();
+                           // transactionStatuses.set(currentLocation, status);
+                            int cl = currentLocation;
+                            long localThreadBeginNumber = beginNumber + (cl - 1) * averageQuantity;
+                            List<CardAccount> cardAccountList = new LinkedList<CardAccount>();
+                            int totalNumber = averageQuantity;
+                            if (cl == Thread_NUMBERS) {
+                                totalNumber = averageQuantity + quantity % Thread_NUMBERS;
+                            }
+                            for (int j = 1; j <= totalNumber; j++) {
+                                CardAccount cardAccount = new CardAccount();
+                                cardAccount.setAppId(appId);
+                                cardAccount.setActivateStatus((short) 0);
+                                cardAccount.setActivateTime(activateTime);
+                                cardAccount.setUseEndTime(useEndTime);
+                                cardAccount.setTimeLength(timeLength);
+                                cardAccount.setBatchId(batchId);
+                                cardAccount.setCardIncrement((int)localThreadBeginNumber);
+                                cardAccount.setCardIncrementNumber(lengthNumber);
+                                cardAccount.setCardNumber(appId + String.format("%0" + lengthNumber + "d", localThreadBeginNumber) + lengthNumber);
+                                cardAccount.setCardPassword("123");
+                                localThreadBeginNumber++;
+                                cardAccountList.add(cardAccount);
+                            }
+                            if (!cardAccountList.isEmpty()) {
+                                cardAccountMapper.insertCardBatch(cardAccountList);
+                                //  userMergeMapper.insertUserInfoBatch(cardAccountList);
+                              //  appAccountMapper.insertCardInfoBatch(cardAccountList);
+                            }
+                         //   transactionManager.commit(status);
+                        } catch (Exception e) {
+                            System.out.println("------------------------*************");
+                            e.printStackTrace();
+                            logger.info("存在同名的阅读卡无法插入-------->error:{}", e.getMessage());
+                            threadPool.shutdownNow();
+                            flagList.add(1);
+                        }
+                        countDownLatch.countDown();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            threadPool.shutdown();
+        }
+
+        try {
+            countDownLatch.await(20, TimeUnit.SECONDS);
+           // System.out.println(transactionStatuses.length());
+           // Thread.sleep(4000);
+            Collections.reverse(transactionStatuses);
+
+            for (TransactionStatus transactionStatus : transactionStatuses) {
+                transactionManager.commit(transactionStatus);
+             // transactionStatus.setRollbackOnly();
+             }
+
+            /*for (int i = transactionStatuses.length() - 1; i >= 0; i--) {
+                transactionManager.commit(transactionStatuses.get(i));
+            }*/
+          /*List<TransactionStatus> list = new ArrayList<TransactionStatus>();
+          for (int i = 0; i < transactionStatuses.size(); i++) {
+                if (i >= transactionStatuses.size() - 3) {
+                    list.add(transactionStatuses.get(i));
+                    System.out.println("cc");
+                } else {
+                    TransactionStatus transactionStatus = transactionStatuses.get(i);
+                    transactionManager.commit(transactionStatus);
+                }
+            }
+
+            transactionManager.commit(list.get(0));
+            transactionManager.commit(list.get(2));
+            transactionManager.commit(list.get(1));*/
+
+          /*while (!transactionStatuses.isEmpty()) {
+              transactionManagerStack.pop().commit((TransactionStatus) transactionStatuses.pop());
+          }*/
+         // commit(transactionManagerStack, transactionStatuses);
+
+
+
+
+
+
+
+        /*
+            transactionManager.commit(list.get(0));
+          ;*/
+
+
+         /* for (int i = list.size() - 1; i >= 0; i--) {
+              transactionManager.commit(list.get(i));
+          }*/
+
+
+
+            System.out.println("事务的个数：" + transactionStatuses.size());
+
+            if (!flagList.isEmpty()) {
+                System.out.println("22222");
+                /*for (TransactionStatus transactionStatus : transactionStatuses) {
+                    transactionStatus.setRollbackOnly();
+                }*/
+            } else {
+                /*for (TransactionStatus transactionStatus : transactionStatuses) {
+                    transactionManager.commit(transactionStatus);
+                }*/
+                System.out.println(flagList);
+                System.out.println("33333");
+
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+        /*
+        try {
+            for (int i = 1; i <= Thread_NUMBERS; i++) {
+                final int currentLocation = i;
+                threadPool.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+                        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW); // 事物隔离级别，开启新事务，这样会比较安全些。
+                        TransactionStatus status = transactionManager.getTransaction(def); // 获得事务状态
+                        transactionStatuses.add(status);
+
+                        try {
+                            int cl = currentLocation;
+                            long localThreadBeginNumber = beginNumber + (cl - 1) * averageQuantity;
+                            List<CardAccount> cardAccountList = new LinkedList<CardAccount>();
+                            int totalNumber = averageQuantity;
+                            if (cl == Thread_NUMBERS) {
+                                totalNumber = averageQuantity + quantity % Thread_NUMBERS;
+                            }
+                            for (int j = 1; j <= totalNumber; j++) {
+                                CardAccount cardAccount = new CardAccount();
+                                cardAccount.setAppId(appId);
+                                cardAccount.setActivateStatus((short) 0);
+                                cardAccount.setActivateTime(activateTime);
+                                cardAccount.setUseEndTime(useEndTime);
+                                cardAccount.setTimeLength(timeLength);
+                                cardAccount.setBatchId(batchId);
+                                cardAccount.setCardIncrement((int)localThreadBeginNumber);
+                                cardAccount.setCardIncrementNumber(lengthNumber);
+                                cardAccount.setCardNumber(appId + String.format("%0" + lengthNumber + "d", localThreadBeginNumber) + lengthNumber);
+                                cardAccount.setCardPassword("123");
+                                localThreadBeginNumber++;
+                                cardAccountList.add(cardAccount);
+                            }
+                            if (!cardAccountList.isEmpty()) {
+                                insertCardInfo(cardAccountList);
+                            }
+                        } catch (Exception e) {
+                            System.out.println("------------------------*************");
+                            logger.error("存在同名的阅读卡无法插入");
+                            e.printStackTrace();
+                            for (TransactionStatus transactionStatus:transactionStatuses) {
+                                transactionStatus.setRollbackOnly();
+                            }
+                            threadPool.shutdownNow();
+                        }
+
+                        countDownLatch.countDown();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+           // logger.info();
+        } finally {
+            threadPool.shutdown();
+        }*/
+
+
+        long ll2 = System.currentTimeMillis() - ll1;
+        System.out.println("话费的时间：" + ll2);
+
+        System.out.println("WWWWWW:" + threadPool.isShutdown());
+
+        return true;
+    }
+
+    private void commit(Stack dataSourceTransactionManagerStack, Stack transactionStatuStack) {
+        while (!dataSourceTransactionManagerStack.isEmpty()) {
+            ((PlatformTransactionManager)dataSourceTransactionManagerStack.pop()).commit(((TransactionStatus) transactionStatuStack.pop()));
+        }
+    }
+
+    /*private void rollback(Stack dataSourceTransactionManagerStack, Stack transactionStatuStack) {
+        while (!dataSourceTransactionManagerStack.isEmpty()) {
+            dataSourceTransactionManagerStack.pop().rollback(transactionStatuStack.pop());
+        }
+    }*/
+
+    // @Transactional
+    public void insertCardInfo(List<CardAccount> cardAccountList) {
+        cardAccountMapper.insertCardBatch(cardAccountList);
+        //  userMergeMapper.insertUserInfoBatch(cardAccountList);
+        appAccountMapper.insertCardInfoBatch(cardAccountList);
+    }
+
+    @Override
+    protected DaoInterface getDao() {
+        return cardAccountMapper;
+    }
+}
