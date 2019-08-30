@@ -1,0 +1,101 @@
+@Override
+    public void insertBatchBookResourceIdsForSolr(final List<Long> resourceIdList, final long packageId, final int flag) {
+        final int total = resourceIdList.size();
+        final int averageQuantity  = total / Thread_NUMBERS;
+        final CountDownLatch countDownLatch = new CountDownLatch(Thread_NUMBERS);
+        final List<TransactionStatus> transactionStatuses = Collections.synchronizedList(new ArrayList<TransactionStatus>());
+        final ExecutorService threadPool = getLocalTheadPool();
+        final List<Integer> isValid = new ArrayList<Integer>();
+        try {
+            for (int i = 1; i <= Thread_NUMBERS; i++) {
+                final int currentLocation = i;
+                threadPool.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+                        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+                        TransactionStatus status = bcrsTransactionManager.getTransaction(def);
+                        transactionStatuses.add(status);
+                        int cl = currentLocation;
+                        long localThreadBeginNumber = (cl - 1) * averageQuantity;
+
+                        int totalNumber = averageQuantity;
+                        if (cl == Thread_NUMBERS) {
+                            totalNumber += total % Thread_NUMBERS;
+                        }
+
+                        try {
+                            if (flag == 0) {
+                                List<BookPackageBookRela> bookPackageBookRelas = new LinkedList<BookPackageBookRela>();
+                                for (int j = 1; j <= totalNumber; j++) {
+                                    BookPackageBookRela bookPackageBookRela = new BookPackageBookRela();
+                                    bookPackageBookRela.setBookId(resourceIdList.get((int)localThreadBeginNumber));
+                                    localThreadBeginNumber++;
+                                    bookPackageBookRela.setPackageId(packageId);
+                                    bookPackageBookRelas.add(bookPackageBookRela);
+                                }
+                                if (!bookPackageBookRelas.isEmpty()) {
+                                    bookPackageBookRelaMapper.insertBookPackageBookRelaBatch(bookPackageBookRelas);
+                                }
+                            } else if (flag == 1) {
+                                List<BookPackageAudioRela> bookPackageAudioRelas = new LinkedList<BookPackageAudioRela>();
+                                for (int j = 1; j <= totalNumber; j++) {
+                                    BookPackageAudioRela bookPackageAudioRela = new BookPackageAudioRela();
+                                    bookPackageAudioRela.setAudioId(resourceIdList.get((int)localThreadBeginNumber));
+                                    localThreadBeginNumber++;
+                                    bookPackageAudioRela.setPackageId(packageId);
+                                    bookPackageAudioRelas.add(bookPackageAudioRela);
+                                }
+                                if (!bookPackageAudioRelas.isEmpty()) {
+                                    bookPackageAudioRelaMapper.insertBookPackageAudioRelaBatch(bookPackageAudioRelas);
+                                }
+                            } else if (flag == 2) {
+                                List<BookPackageVedioRela> bookPackageVedioRelas = new LinkedList<BookPackageVedioRela>();
+                                for (int j = 1; j <= totalNumber; j++) {
+                                    BookPackageVedioRela bookPackageVedioRela = new BookPackageVedioRela();
+                                    bookPackageVedioRela.setVedioId(resourceIdList.get((int)localThreadBeginNumber));
+                                    localThreadBeginNumber++;
+                                    bookPackageVedioRela.setPackageId(packageId);
+                                    bookPackageVedioRelas.add(bookPackageVedioRela);
+                                }
+                                if (!bookPackageVedioRelas.isEmpty()) {
+                                    bookPackageVedioRelaMapper.insertBookPackageVedioRelaBatch(bookPackageVedioRelas);
+                                }
+                            }
+                        } catch (Exception e) {
+                            logger.error("插入书单资源图书关联表异常-------->packageId:[{}]", packageId);
+                            isValid.add(1);
+                            threadPool.shutdownNow();
+                            while(countDownLatch.getCount() > 0) {
+                                countDownLatch.countDown();
+                            }
+                        }
+
+                        countDownLatch.countDown();
+                    }
+                });
+            }
+        } finally {
+            threadPool.shutdown();
+        }
+
+        try {
+            countDownLatch.await();
+
+            if (isValid.isEmpty()) {
+                //Collections.reverse(transactionStatuses);
+                for (int i = transactionStatuses.size() - 1; i >=0; i--) {
+                    bcrsTransactionManager.commit(transactionStatuses.get(i));
+                }
+                /*for (TransactionStatus transactionStatus : transactionStatuses) {
+                    bcrsTransactionManager.commit(transactionStatus);
+                }*/
+            } else {//有异常,线程事物批量回滚
+                for (TransactionStatus transactionStatus : transactionStatuses) {
+                    transactionStatus.setRollbackOnly();
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }

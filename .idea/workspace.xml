@@ -2,81 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8b56009-5fa4-49f2-8c28-8e466c7da0d8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/center/CallableDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/center/DeadLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/center/MyThreadPoolDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/ABADemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/AtomicReferenceDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/BlockingQueueDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/CASDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/ContainerNotSafeDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/CountDownLatchDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/CountryEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/CyclicBarrierDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/ProdConsumer_BlockQueueDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/ProdConsumer_TraditionDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/ReadWriteLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/ReenterLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/SemaphoreDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/SingletonDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/SpinLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/SyncAndReentrantLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/SynchronousQueueDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/T1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/TestTransferValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter/VotaileDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/ABADemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/AtomicReferenceDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/BlockingQueueDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/CASDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/CallableDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/ContainerNotSafeDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/CountDownLatchDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/CountryEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/CyclicBarrierDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/DeadLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/MyThreadPoolDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/ProdConsumer_BlockQueueDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/ProdConsumer_TraditionDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/ReadWriteLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/ReenterLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/SemaphoreDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/SingletonDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/SpinLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/SyncAndReentrantLockDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/SynchronousQueueDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/T1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/TestTransferValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/VotaileDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day01/TestCopyOnWriteArrayList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day01/TestCountDownLatch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day01/TestVolatile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestABCAlternate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestCallable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestForkJoinPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestProductorAndConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestProductorAndConsumerForLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestReadWriteLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestScheduledThreadPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestThread8Monitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestThreadPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/项目实战/CardAccountServiceImpl只能实现单库事务管理.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/项目实战/多线程项目实例" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/项目实战/多线程项目实例精简版.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/项目实战/错误顺序例子" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/center/ProdConsumer_BlockQueueDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/center/ProdConsumer_BlockQueueDemo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/center/SingletonDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/center/SingletonDemo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/juc/AtomicDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/juc/CompareAndSwap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/juc/TestAtomicDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/juc/TestCompareAndSwap$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/juc_atguigu/com/atguigu/juc/TestCompareAndSwap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/atguigu/center/ProdConsumer_BlockQueueDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/atguigu/center/ProdConsumer_BlockQueueDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/atguigu/center/SingletonDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/atguigu/center/SingletonDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/atguigu/juc/TestAtomicDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day01/TestAtomicDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/atguigu/juc/TestCompareAndSwap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day01/TestCompareAndSwap.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,7 +16,44 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/项目实战/多线程项目实例">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3825">
+              <caret line="255" column="39" selection-start-line="255" selection-start-column="39" selection-end-line="255" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/项目实战/CardAccountServiceImpl只能实现单库事务管理.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2550">
+              <caret line="170" column="13" selection-start-line="170" selection-start-column="13" selection-end-line="170" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/项目实战/多线程项目实例精简版.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="152" column="37" selection-start-line="152" selection-start-column="20" selection-end-line="152" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/项目实战/错误顺序例子">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1500">
+              <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -106,6 +70,7 @@
       <find>cache</find>
       <find>runnable</find>
       <find>stream</find>
+      <find>transactionStatus</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -114,7 +79,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/atguigu/juc/recenter/SyncAndReentrantLockDemo.java" />
         <option value="$PROJECT_DIR$/src/com/atguigu/juc/recenter/SynchronousQueueDemo.java" />
         <option value="$PROJECT_DIR$/src/com/atguigu/juc/recenter/T1.java" />
         <option value="$PROJECT_DIR$/src/com/atguigu/juc/recenter/VotaileDemo.java" />
@@ -165,6 +129,7 @@
         <option value="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/T1.java" />
         <option value="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/TestTransferValue.java" />
         <option value="$PROJECT_DIR$/src/com/atguigu/juc/recenter2/VotaileDemo.java" />
+        <option value="$PROJECT_DIR$/src/项目实战/错误顺序例子" />
       </list>
     </option>
   </component>
@@ -186,10 +151,9 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="172" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="831" />
+    <option name="height" value="829" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -476,6 +440,11 @@
             <path>
               <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
               <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -483,91 +452,6 @@
               <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="center" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="center" type="462c0819:PsiDirectoryNode" />
-              <item name="DeadLockDemo.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="center" type="462c0819:PsiDirectoryNode" />
-              <item name="ReadWriteLockDemo.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="center" type="462c0819:PsiDirectoryNode" />
-              <item name="ReenterLockDemo.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="center" type="462c0819:PsiDirectoryNode" />
-              <item name="SyncAndReentrantLockDemo.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="center" type="462c0819:PsiDirectoryNode" />
-              <item name="TestTransferValue.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="center" type="462c0819:PsiDirectoryNode" />
-              <item name="VotaileDemo.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="juc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="juc" type="462c0819:PsiDirectoryNode" />
-              <item name="recenter2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="juc" type="462c0819:PsiDirectoryNode" />
-              <item name="recenter2" type="462c0819:PsiDirectoryNode" />
-              <item name="DeadLockDemo.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="juc_atguigu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="juc_atguigu" type="b2602c69:ProjectViewProjectNode" />
@@ -586,8 +470,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -776,17 +663,24 @@
       <workItem from="1560216135505" duration="9699000" />
       <workItem from="1560346280041" duration="1455000" />
       <workItem from="1560389498725" duration="28000" />
-      <workItem from="1560496847634" duration="18970000" />
+      <workItem from="1560496847634" duration="19029000" />
+      <workItem from="1560590201519" duration="13000" />
+      <workItem from="1560590434896" duration="48000" />
+      <workItem from="1564104263671" duration="2795000" />
+      <workItem from="1564123136326" duration="2579000" />
+      <workItem from="1564238076115" duration="26000" />
+      <workItem from="1566267059658" duration="2018000" />
+      <workItem from="1567158987803" duration="102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135523000" />
+    <option name="totallyTimeSpent" value="143163000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31616595" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3483548" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -795,7 +689,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33828998" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33828998" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39900866" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -864,34 +758,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/atguigu/juc/rejuc/day02/TestThreadPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo/day02/TestThreadPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo/day02/TestThread8Monitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/atguigu/juc/recenter/ABADemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/util/concurrent/TimeUnit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -1258,17 +1124,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/atguigu/center/VotaileDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-593">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/atguigu/juc/recenter2/VotaileDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/atguigu/center/VotaileDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/项目实战/多线程项目实例">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3825">
+          <caret line="255" column="39" selection-start-line="255" selection-start-column="39" selection-end-line="255" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/项目实战/CardAccountServiceImpl只能实现单库事务管理.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="170" column="13" selection-start-line="170" selection-start-column="13" selection-end-line="170" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/项目实战/错误顺序例子">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/项目实战/多线程项目实例精简版.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="152" column="37" selection-start-line="152" selection-start-column="20" selection-end-line="152" selection-end-column="37" />
         </state>
       </provider>
     </entry>
